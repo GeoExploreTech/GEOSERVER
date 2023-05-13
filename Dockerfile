@@ -48,7 +48,7 @@ ENV CATALINA_OPTS="\$EXTRA_JAVA_OPTS \
     -Xbootclasspath/a:$CATALINA_HOME/lib/marlin.jar \
     -Dsun.java2d.renderer=org.marlin.pisces.PiscesRenderingEngine \
     -Dorg.geotools.coverage.jaiext.enabled=true"
-
+ENV CATALINA_HTTP_PORT=8080
 # init
 RUN apt update && \
     apt -y upgrade && \
