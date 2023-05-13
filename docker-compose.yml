@@ -9,7 +9,7 @@ services:
         - CORS_ENABLED=true
         - CORS_ALLOWED_METHODS=GET,POST,PUT,HEAD,OPTIONS
     ports:
-      - 80:8080
+      - 8080:8080
     environment:
       - INSTALL_EXTENSIONS=true
       - STABLE_EXTENSIONS=wps,csw,ysld,h2,gdal,ogr-wps,dxf,excel,db2,printing,pyramid,querylayer,sqlserver
