@@ -1,0 +1,30 @@
+version: "3.9"
+volumes:
+  geoserver-data:
+  additional_libs:
+
+services:
+  geoserver:
+    build:
+      context: .
+      args:
+        - GEOSERVER_VERSION=2.22.0
+        - CORS_ENABLED=true
+        - CORS_ALLOWED_METHODS=GET,POST,PUT,HEAD,OPTIONS
+    ports:
+      - 8080:8080
+    environment:
+      - INSTALL_EXTENSIONS=true
+      - STABLE_EXTENSIONS=wps,csw,ysld,h2,gdal,ogr-wps,dxf,excel,db2,printing,pyramid,querylayer,sqlserver
+      - EXTRA_JAVA_OPTS=-Xms1G -Xmx2G
+      - VIRTUAL_PORT=8080
+      - VIRTUAL_HOST=geoserver.geoviso.com
+      - LETSENCRYPT_HOST=geoserver.geoviso.com
+      - LETSENCRYPT_EMAIL=omowarebola@interspatialtech.com
+    volumes:
+      - geoserver_data:/opt/geoserver_data/:Z
+      - additional_libs:/opt/additional_libs:Z # by mounting this we can install libs from host on startup
+
+networks:
+  default:
+    name: letsencrypt
